@@ -115,28 +115,14 @@ namespace Komodo_Cafe
             }
             Console.ReadKey();
         }
-        //private void AddIngredients()
-        //{
-        //    List<string> userInput = new List<string>();
-        //    Console.WriteLine("Do you want to put in more ingredients?(y/n)");
-        //    string userAddMoreIngredients = Console.ReadLine().ToLower();
-        //    if (userAddMoreIngredients == "y")
-        //    {
-        //        //Console.ReadLine(userInput);
-        //    }
-        //    else
-        //    {
-        //        Console.WriteLine("Ingredients Added.");
-        //    }
-
-        //}
+       
         private void ViewAllMenuItems()
         {
             Console.Clear();
             List<MenuPOCOs> menuPOCOs = _mealRepo.GetMenuItems();
             if (menuPOCOs != null)
             {
-                foreach (var menuItem in menuPOCOs)
+                foreach (MenuPOCOs menuItem in menuPOCOs)
                 {
 
                     DisplayMenuItemDetails(menuItem);

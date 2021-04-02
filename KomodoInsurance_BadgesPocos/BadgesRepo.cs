@@ -31,22 +31,23 @@ namespace KomodoInsurance_BadgesPocos
         }
 
 
-        public bool RemoveADoor(int key, List<DoorAccess> door)
-        {
-            foreach (KeyValuePair<int, BadgesPOCOs> item in _badgesDict)
-            {
-                if (key == item.Key)
-                {
+        //wasn't able to get this to work unfortunately
+        //public bool RemoveADoor(int key, List<DoorAccess> door)
+        //{
+        //    foreach (KeyValuePair<int, BadgesPOCOs> item in _badgesDict)
+        //    {
+        //        if (key == item.Key)
+        //        {
                     
-                    //didn't work, trying to find a way to compare the entered door in the UI and then take that door off of a badge but leave the remaining doors
-                    //if desired
+        //            //didn't work, trying to find a way to compare the entered door in the UI and then take that door off of a badge but leave the remaining doors
+        //            //if desired
 
-                    //item.Value.DoorAccess.Count.CompareTo(door);
-                    return true;
-                }
-            }
-            return false;
-        }
+        //            //item.Value.DoorAccess.Count.CompareTo(door);
+        //            return true;
+        //        }
+        //    }
+        //    return false;
+        //}
 
 
 

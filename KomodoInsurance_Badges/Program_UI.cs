@@ -66,9 +66,9 @@ namespace KomodoInsurance_Badges
                 case "2":
                     AddADoor();
                     break;
-                case "3":
-                    RemoveADoor();
-                    break;
+                //case "3":
+                //    RemoveADoor();
+                //    break;
                 case "4":
                     RemoveAllDoors();
                     break;
@@ -80,104 +80,106 @@ namespace KomodoInsurance_Badges
         }
 
 
-        public void RemoveADoor()
-        {
-            Console.WriteLine("Enter the badge key to select a badge to remove a door from.");
+        //i was unable to get this part finished. I have a remove all method but couldn't get the removal of a single door to work.
+
+        //public void RemoveADoor()
+        //{
+        //    Console.WriteLine("Enter the badge key to select a badge to remove a door from.");
            
             
-            //this is the inside of ListAllBadges
-            //foreach (KeyValuePair<int, BadgesPOCOs> badge in _badgeRepo.ViewAllBadges())
-            //{
-            //    DisplayBadgeDetails(badge);
-            //}
-            ListAllBadges();
+        //    //this is the inside of ListAllBadges
+        //    //foreach (KeyValuePair<int, BadgesPOCOs> badge in _badgeRepo.ViewAllBadges())
+        //    //{
+        //    //    DisplayBadgeDetails(badge);
+        //    //}
+        //    ListAllBadges();
 
-            int userKeyInput = int.Parse(Console.ReadLine());
+        //    int userKeyInput = int.Parse(Console.ReadLine());
 
-            BadgesPOCOs newBadge = new BadgesPOCOs();
+        //    BadgesPOCOs newBadge = new BadgesPOCOs();
             
 
-            //Doesn't work but retyped this from the Setup method in order to display the doors but have a different WriteLine ontop of the door list to choose from
-            //
-            bool userInputDoorAccess = false;
-            while (!userInputDoorAccess)
-            {
+        //    //Doesn't work but retyped this from the Setup method in order to display the doors but have a different WriteLine ontop of the door list to choose from
+        //    //
+        //    bool userInputDoorAccess = false;
+        //    while (!userInputDoorAccess)
+        //    {
 
-                Console.WriteLine("Are you sure you want to remove a door? (y/n)");
-                string userInputAddDoors = Console.ReadLine().ToLower();
-                if (userInputAddDoors == "y")
-                {
+        //        Console.WriteLine("Are you sure you want to remove a door? (y/n)");
+        //        string userInputAddDoors = Console.ReadLine().ToLower();
+        //        if (userInputAddDoors == "y")
+        //        {
 
-                    Console.WriteLine("Input the door you would like to REMOVE\n" +
-                        "1. A1\n" +
-                        "2. A2\n" +
-                        "3. A3\n" +
-                        "4. A4\n" +
-                        "5. A5\n" +
-                        "6. B1\n" +
-                        "7. B2\n" +
-                        "8. B3\n" +
-                        "9. B4\n" +
-                        "10. B5");
-                    string userInputNewDoors = Console.ReadLine();
-                    switch (userInputNewDoors)
-                    {
-                        case "1":
-                            newBadge.DoorAccess.Add((DoorAccess)int.Parse(userInputNewDoors));
-                            break;
-                        case "2":
-                            newBadge.DoorAccess.Add((DoorAccess)int.Parse(userInputNewDoors));
-                            break;
-                        case "3":
-                            newBadge.DoorAccess.Add((DoorAccess)int.Parse(userInputNewDoors));
-                            break;
-                        case "4":
-                            newBadge.DoorAccess.Add((DoorAccess)int.Parse(userInputNewDoors));
-                            break;
-                        case "5":
-                            newBadge.DoorAccess.Add((DoorAccess)int.Parse(userInputNewDoors));
-                            break;
-                        case "6":
-                            newBadge.DoorAccess.Add((DoorAccess)int.Parse(userInputNewDoors));
-                            break;
-                        case "7":
-                            newBadge.DoorAccess.Add((DoorAccess)int.Parse(userInputNewDoors));
-                            break;
-                        case "8":
-                            newBadge.DoorAccess.Add((DoorAccess)int.Parse(userInputNewDoors));
-                            break;
-                        case "9":
-                            newBadge.DoorAccess.Add((DoorAccess)int.Parse(userInputNewDoors));
-                            break;
-                        case "10":
-                            newBadge.DoorAccess.Add((DoorAccess)int.Parse(userInputNewDoors));
-                            break;
+        //            Console.WriteLine("Input the door you would like to REMOVE\n" +
+        //                "1. A1\n" +
+        //                "2. A2\n" +
+        //                "3. A3\n" +
+        //                "4. A4\n" +
+        //                "5. A5\n" +
+        //                "6. B1\n" +
+        //                "7. B2\n" +
+        //                "8. B3\n" +
+        //                "9. B4\n" +
+        //                "10. B5");
+        //            string userInputNewDoors = Console.ReadLine();
+        //            switch (userInputNewDoors)
+        //            {
+        //                case "1":
+        //                    newBadge.DoorAccess.Add((DoorAccess)int.Parse(userInputNewDoors));
+        //                    break;
+        //                case "2":
+        //                    newBadge.DoorAccess.Add((DoorAccess)int.Parse(userInputNewDoors));
+        //                    break;
+        //                case "3":
+        //                    newBadge.DoorAccess.Add((DoorAccess)int.Parse(userInputNewDoors));
+        //                    break;
+        //                case "4":
+        //                    newBadge.DoorAccess.Add((DoorAccess)int.Parse(userInputNewDoors));
+        //                    break;
+        //                case "5":
+        //                    newBadge.DoorAccess.Add((DoorAccess)int.Parse(userInputNewDoors));
+        //                    break;
+        //                case "6":
+        //                    newBadge.DoorAccess.Add((DoorAccess)int.Parse(userInputNewDoors));
+        //                    break;
+        //                case "7":
+        //                    newBadge.DoorAccess.Add((DoorAccess)int.Parse(userInputNewDoors));
+        //                    break;
+        //                case "8":
+        //                    newBadge.DoorAccess.Add((DoorAccess)int.Parse(userInputNewDoors));
+        //                    break;
+        //                case "9":
+        //                    newBadge.DoorAccess.Add((DoorAccess)int.Parse(userInputNewDoors));
+        //                    break;
+        //                case "10":
+        //                    newBadge.DoorAccess.Add((DoorAccess)int.Parse(userInputNewDoors));
+        //                    break;
 
-                        default:
-                            break;
+        //                default:
+        //                    break;
 
-                    }
-                }
+        //            }
+        //        }
 
-                else
-                {
-                    userInputDoorAccess = true;
+        //        else
+        //        {
+        //            userInputDoorAccess = true;
 
-                }
-            }
-            BadgesPOCOs removingADoor = new BadgesPOCOs();
-            bool isSuccessful = _badgeRepo.RemoveADoor(userKeyInput, removingADoor.DoorAccess);
+        //        }
+        //    }
+        //    BadgesPOCOs removingADoor = new BadgesPOCOs();
+        //    bool isSuccessful = _badgeRepo.RemoveADoor(userKeyInput, removingADoor.DoorAccess);
 
-            if (isSuccessful)
-            {
-                Console.WriteLine("Door removed");
-            }
-            else
-            {
-                Console.WriteLine("Removal Failed");
-            }
+        //    if (isSuccessful)
+        //    {
+        //        Console.WriteLine("Door removed");
+        //    }
+        //    else
+        //    {
+        //        Console.WriteLine("Removal Failed");
+        //    }
 
-        }
+        //}
 
 
         public void RemoveAllDoors()
