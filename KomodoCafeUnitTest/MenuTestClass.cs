@@ -32,13 +32,7 @@ namespace KomodoCafeUnitTest
 
             _repoItems.AddMealNumberToMeal(_items);
         }
-        //need help
-
-        //[TestMethod]
-        //public void GetMenuItems_ShouldReturnCorrectResult()
-        //{
-        //    MenuPOCOs searchResult = 
-        //}
+      
         [TestMethod]
 
         //created this method to help with the delete method so had to test it. Get By ID is unused in the code besides the testM. Other ways to do this??

@@ -19,7 +19,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KomodoInsurance_Badges", "K
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KomodoInsurance_BadgesPocos", "KomodoInsurance_BadgesPocos\KomodoInsurance_BadgesPocos.csproj", "{4353F17F-EF08-432C-B67A-1864FD8D3E8D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dictionary_Discovery", "Dictionary_Discovery\Dictionary_Discovery.csproj", "{98215B51-440C-4BB0-97B0-AAF52A213845}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KomodoInsurance_BadgesUnitTest", "KomodoInsurance_BadgesUnitTest\KomodoInsurance_BadgesUnitTest.csproj", "{FB6B99C6-0102-4280-B424-5F58DB29B8BB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -59,10 +59,10 @@ Global
 		{4353F17F-EF08-432C-B67A-1864FD8D3E8D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4353F17F-EF08-432C-B67A-1864FD8D3E8D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4353F17F-EF08-432C-B67A-1864FD8D3E8D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{98215B51-440C-4BB0-97B0-AAF52A213845}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{98215B51-440C-4BB0-97B0-AAF52A213845}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{98215B51-440C-4BB0-97B0-AAF52A213845}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{98215B51-440C-4BB0-97B0-AAF52A213845}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FB6B99C6-0102-4280-B424-5F58DB29B8BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB6B99C6-0102-4280-B424-5F58DB29B8BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB6B99C6-0102-4280-B424-5F58DB29B8BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB6B99C6-0102-4280-B424-5F58DB29B8BB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

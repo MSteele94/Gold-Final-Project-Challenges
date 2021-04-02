@@ -12,15 +12,15 @@ namespace KomodoInsurance_BadgesPocos
         int Count = 0;
         public bool AddNewBadge(BadgesPOCOs newBadge)
         {
-          
-            _badgesDict.Add(Count, newBadge);
+
             Count++;
+            _badgesDict.Add(Count, newBadge);
             return true;
         }
 
         public BadgesPOCOs GetBadgesByKey(int badgeKey)
         {
-            foreach (var content in _badgesDict)
+            foreach (KeyValuePair<int, BadgesPOCOs> content in _badgesDict)
             {
                 if (content.Key == badgeKey)
                 {
@@ -30,18 +30,68 @@ namespace KomodoInsurance_BadgesPocos
             return null;
         }
 
-        public bool UpdateBadge(int key, int oldBadge, List<DoorAccess> newBadgeData)
+
+        public bool RemoveADoor(int key, List<DoorAccess> door)
         {
-            BadgesPOCOs oldBadgeData = new BadgesPOCOs();
-            oldBadgeData = GetBadgesByKey(key);
+            foreach (KeyValuePair<int, BadgesPOCOs> item in _badgesDict)
+            {
+                if (key == item.Key)
+                {
+                    
+                    //didn't work, trying to find a way to compare the entered door in the UI and then take that door off of a badge but leave the remaining doors
+                    //if desired
+
+                    //item.Value.DoorAccess.Count.CompareTo(door);
+                    return true;
+                }
+            }
+            return false;
+        }
+
+
+
+        public bool RemovingAllDoors(int key, List<DoorAccess> doors)
+        {
+            foreach (KeyValuePair<int, BadgesPOCOs> item in _badgesDict)
+            {
+                if (key == item.Key)
+                {
+
+                    item.Value.DoorAccess.Clear();
+                  //  item.Value.DoorAccess.Count().CompareTo(doors);
+                    return true;
+                }
+            }
+            return false;
+           
+        }
+        public bool AddingDoor(int key, List<DoorAccess> doors)
+        {
+
+            foreach (KeyValuePair<int, BadgesPOCOs> item in _badgesDict)
+            {
+                if (key == item.Key)
+                {
+                    item.Value.DoorAccess.AddRange(doors);
+                    return true;
+                }
+
+            }
+            return false;
+          
+        }
+        public bool UpdateBadge( int oldBadge, BadgesPOCOs newBadgeData)
+        {
+
+            BadgesPOCOs oldBadgeData = GetBadgesByKey(oldBadge);
             if (oldBadgeData == null)
             {
                 return false;
             }
             else
             {
-                oldBadgeData.DoorAccess = newBadgeData;
-                oldBadgeData.BadgeID = oldBadge;
+                oldBadgeData.DoorAccess = newBadgeData.DoorAccess;
+                oldBadgeData.BadgeID = newBadgeData.BadgeID;
 
                 return true;
             }

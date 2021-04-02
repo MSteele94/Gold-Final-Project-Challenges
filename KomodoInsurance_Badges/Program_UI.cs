@@ -20,14 +20,14 @@ namespace KomodoInsurance_Badges
 
         private void RunMenu()
         {
-
+            Console.Clear();
             bool continueToRun = true;
             while (continueToRun)
             {
 
                 Console.WriteLine("Hello Security Admin, What would you like to do?\n" +
                                     "1. Add a Badge.\n" +
-                                    "2. Edit a Badge." +
+                                    "2. Edit a Badge.\n" +
                                     "3. List all Badges");
 
                 string userInput = Console.ReadLine();
@@ -47,162 +47,68 @@ namespace KomodoInsurance_Badges
                 }
 
             }
+
         }
-        //while loop for bages in adding badges
+        
 
         public void EditBadges()
         {
-            Console.Clear();
-            Console.WriteLine("Which badge would you like to update? Please enter the Key.");
-            foreach (var badge in _badgeRepo.ViewAllBadges())
+            Console.WriteLine("1. Update Badge\n" +
+                              "2. Add a Door\n" +
+                              "3. Remove a door\n" +
+                              "4. Remove ALL doors\n");
+            string userInput = Console.ReadLine();
+            switch (userInput)
             {
-                DisplayBadgeDetails(badge);
+                case "1":
+                    UpdateBadge();
+                    break;
+                case "2":
+                    AddADoor();
+                    break;
+                case "3":
+                    RemoveADoor();
+                    break;
+                case "4":
+                    RemoveAllDoors();
+                    break;
+                case "4:":
+
+                default:
+                    break;
             }
-            int userInputBadgeKey = int.Parse(Console.ReadLine());
-            Console.ReadKey();
+        }
 
-            List<DoorAccess> newBadgeData = new List<DoorAccess>();
-            BadgesPOCOs newBadgeID = new BadgesPOCOs();
 
-            BadgesPOCOs updatedBadge = _badgeRepo.GetBadgesByKey(userInputBadgeKey);
-            newBadgeData = updatedBadge.DoorAccess;
-
-            Console.WriteLine("Please enter a new Badge ID:");
-            int userInputBadgeID = int.Parse(Console.ReadLine());
-            newBadgeID.BadgeID = userInputBadgeID;
-
+        public void RemoveADoor()
+        {
+            Console.WriteLine("Enter the badge key to select a badge to remove a door from.");
            
-            //henry helped me with this as well
-            bool loop = true;
-            while (loop)
-            {
+            
+            //this is the inside of ListAllBadges
+            //foreach (KeyValuePair<int, BadgesPOCOs> badge in _badgeRepo.ViewAllBadges())
+            //{
+            //    DisplayBadgeDetails(badge);
+            //}
+            ListAllBadges();
 
-                Console.WriteLine("Would you like to add a door? (y/n)");
-                string userInputAddDoor = Console.ReadLine().ToLower();
+            int userKeyInput = int.Parse(Console.ReadLine());
 
-                if (userInputAddDoor == "n")
-                {
-
-                    Console.WriteLine("All doors updated");
-                    loop = false;
-                }
-                else if (userInputAddDoor == "y")
-                {
-                    Console.WriteLine("Input the door you would like to add\n" +
-                         "1. A1\n" +
-                         "2. A2\n" +
-                         "3. A3\n" +
-                         "4. A4\n" +
-                         "5. A5\n" +
-                         "6. B1\n" +
-                         "7. B2\n" +
-                         "8. B3\n" +
-                         "9. B4\n" +
-                         "10. B5");
-                    string userInputUpdateDoor = Console.ReadLine();
-                    // List<DoorAccess> newDoors = new List<DoorAccess>();
-                    switch (userInputUpdateDoor)
-                    {
-                        case "1":
-                            newBadgeData.Add((DoorAccess)int.Parse(userInputUpdateDoor));
-                            break;
-                        case "2":
-                            newBadgeData.Add((DoorAccess)int.Parse(userInputUpdateDoor));
-                            break;
-                        case "3":
-                            newBadgeData.Add((DoorAccess)int.Parse(userInputUpdateDoor));
-                            break;
-                        case "4":
-                            newBadgeData.Add((DoorAccess)int.Parse(userInputUpdateDoor));
-                            break;
-                        case "5":
-                            newBadgeData.Add((DoorAccess)int.Parse(userInputUpdateDoor));
-                            break;
-                        case "6":
-                            newBadgeData.Add((DoorAccess)int.Parse(userInputUpdateDoor));
-                            break;
-                        case "7":
-                            newBadgeData.Add((DoorAccess)int.Parse(userInputUpdateDoor));
-                            break;
-                        case "8":
-                            newBadgeData.Add((DoorAccess)int.Parse(userInputUpdateDoor));
-                            break;
-                        case "9":
-                            newBadgeData.Add((DoorAccess)int.Parse(userInputUpdateDoor));
-                            break;
-                        case "10":
-                            newBadgeData.Add((DoorAccess)int.Parse(userInputUpdateDoor));
-                            break;
-                            
-                        default:
-                            break;
-
-                    }
-                }
-
-                else
-                {
-                    Console.WriteLine("Invalid input");
-                }
-            }
-
-
-
-            bool isSuccessful = _badgeRepo.UpdateBadge(userInputBadgeKey, userInputBadgeID, newBadgeData);
-
-            if (isSuccessful)
-            {
-                Console.WriteLine("Success");
-            }
-            else
-            {
-                Console.WriteLine("Exiting to Menu");
-            }
-            Console.ReadKey();
-        }
-        public void ListAllBadges()
-        {
-            Console.Clear();
-
-            foreach (var badge in _badgeRepo.ViewAllBadges())
-            {
-                DisplayBadgeDetails(badge);
-            }
-            Console.ReadKey();
-        }
-        public void DisplayBadgeDetails(KeyValuePair<int, BadgesPOCOs> badge)
-        {
-            //KeyValuePair<int, BadgesPOCOs> badgeContent = new KeyValuePair<int, BadgesPOCOs>();
-            Console.WriteLine($"Key: {badge.Key}\n" +
-                $"BadgeId: {badge.Value.BadgeID}\n");
-            foreach (var door in badge.Value.DoorAccess)
-            {
-                Console.WriteLine(door);
-            }
-            Console.WriteLine("------------------------");
-        }
-        public void AddABadge()
-        {
             BadgesPOCOs newBadge = new BadgesPOCOs();
+            
 
-           //List<DoorAccess> newBadgeDoor = new List<DoorAccess>();
-
-            Console.WriteLine("What is the number on the badge?");
-            int userInputBadgeNumber = int.Parse(Console.ReadLine());
-            newBadge.BadgeID = userInputBadgeNumber;
-
-            //this is for adding doors to a badge
+            //Doesn't work but retyped this from the Setup method in order to display the doors but have a different WriteLine ontop of the door list to choose from
+            //
             bool userInputDoorAccess = false;
-            //List<DoorAccess> newDoorsForAccess = new List<DoorAccess>();
             while (!userInputDoorAccess)
             {
 
-                Console.WriteLine("Do you want to add new doors to this badge? (y/n)");
+                Console.WriteLine("Are you sure you want to remove a door? (y/n)");
                 string userInputAddDoors = Console.ReadLine().ToLower();
                 if (userInputAddDoors == "y")
                 {
 
-                    Console.WriteLine("Input the door you would like to add\n" +
+                    Console.WriteLine("Input the door you would like to REMOVE\n" +
                         "1. A1\n" +
                         "2. A2\n" +
                         "3. A3\n" +
@@ -214,7 +120,6 @@ namespace KomodoInsurance_Badges
                         "9. B4\n" +
                         "10. B5");
                     string userInputNewDoors = Console.ReadLine();
-                    // List<DoorAccess> newDoors = new List<DoorAccess>();
                     switch (userInputNewDoors)
                     {
                         case "1":
@@ -247,93 +152,279 @@ namespace KomodoInsurance_Badges
                         case "10":
                             newBadge.DoorAccess.Add((DoorAccess)int.Parse(userInputNewDoors));
                             break;
-                           
+
                         default:
                             break;
 
                     }
-
-                    //Console.WriteLine("Input Door from this list:\n" +
-                    //"---------------------------------------------\n" +
-                    //"Entering nothing at this point will remove all doors\n" +
-                    //"(A1, A2, A3, A4, A5) - (B1, B2, B3, B4, B5");
-                    //string doorNumber = Console.ReadLine().ToUpper();
-
-
-
                 }
-                else if (userInputAddDoors == "n")
-                {
-                    
-                    userInputDoorAccess = true;
-                    bool isSuccessful = _badgeRepo.AddNewBadge( newBadge);
-                    if (isSuccessful)
-                    {
-                        Console.WriteLine("Successful");
-                    }
-                    else
-                    {
-                        Console.WriteLine("Failed");
-                    }
-                }
+
                 else
                 {
                     userInputDoorAccess = true;
-                    RunMenu();
+
                 }
             }
-         
+            BadgesPOCOs removingADoor = new BadgesPOCOs();
+            bool isSuccessful = _badgeRepo.RemoveADoor(userKeyInput, removingADoor.DoorAccess);
 
-          
+            if (isSuccessful)
+            {
+                Console.WriteLine("Door removed");
+            }
+            else
+            {
+                Console.WriteLine("Removal Failed");
+            }
 
+        }
+
+
+        public void RemoveAllDoors()
+        {
+
+            //found this by accident kind of.. REMOVES ALL DOORS Could be useful so will keep it in the UI and do another method for deleting a specific door
+            //i believe it will require a mixture of the update method and the adding method with a tweak
+
+            Console.WriteLine("Enter the badge key to remove all doors off that badge.");
+            
+            
+            //this is the inside of ListAllBadges
+            //foreach (KeyValuePair<int, BadgesPOCOs> badge in _badgeRepo.ViewAllBadges())
+            //{
+            //    DisplayBadgeDetails(badge);
+            //}
+            ListAllBadges();
+
+            int userBadgeKey = int.Parse(Console.ReadLine());
+            BadgesPOCOs removingAllDoors = new BadgesPOCOs();
+
+
+
+            bool isSuccessful = _badgeRepo.RemovingAllDoors(userBadgeKey, removingAllDoors.DoorAccess);
+
+            if (isSuccessful)
+            {
+                Console.WriteLine("Success");
+            }
+            else
+            {
+                Console.WriteLine("Exiting to Menu");
+
+            }
+            Console.ReadKey();
+        }
+        public void AddADoor()
+        {
+            Console.WriteLine("Enter the badge key to select a badge you would like to add a door to.");
 
            
+            
+            //this is the inside of ListAllBadges
+            //foreach (KeyValuePair<int, BadgesPOCOs> badge in _badgeRepo.ViewAllBadges())
+            //{
+            //    DisplayBadgeDetails(badge);
+            //}
+            ListAllBadges();
+
+
+            int userBadgeKey = int.Parse(Console.ReadLine());
+            BadgesPOCOs addingADoor = new BadgesPOCOs();
+
+
+
+            Setup(addingADoor);
+
+
+
+
+            bool isSuccessful = _badgeRepo.AddingDoor(userBadgeKey, addingADoor.DoorAccess);
+
+            if (isSuccessful)
+            {
+                Console.WriteLine("Success");
+            }
+            else
+            {
+                Console.WriteLine("Exiting to Menu");
+
+            }
             Console.ReadKey();
+
+        }
+
+
+        private void UpdateBadge()
+        {
+            Console.Clear();
+            Console.WriteLine("Which badge would you like to update? Please enter the Key.");
+
+            //this is the inside of ListAllBadges
+            //foreach (KeyValuePair<int, BadgesPOCOs> badge in _badgeRepo.ViewAllBadges())
+            //{
+            //    DisplayBadgeDetails(badge);
+            //}
+            ListAllBadges();
+
+            int userInputBadgeKey = int.Parse(Console.ReadLine());
+            Console.ReadKey();
+
+            BadgesPOCOs newBadgeData = new BadgesPOCOs();
+
+
+            Console.WriteLine("Please enter a new Badge ID:");
+            int userInputBadgeID = int.Parse(Console.ReadLine());
+            newBadgeData.BadgeID = userInputBadgeID;
+
+
+            Setup(newBadgeData);
+
+
+            bool isSuccessful = _badgeRepo.UpdateBadge(userInputBadgeKey, newBadgeData);
+
+            if (isSuccessful)
+            {
+                Console.WriteLine("Success");
+            }
+            else
+            {
+                Console.WriteLine("Exiting to Menu");
+            }
+            Console.ReadKey();
+        }
+
+        public void ListAllBadges()
+        {
+            Console.Clear();
+
+            foreach (KeyValuePair<int, BadgesPOCOs> badge in _badgeRepo.ViewAllBadges())
+            {
+                DisplayBadgeDetails(badge);
+            }
+            Console.ReadKey();
+            Console.Clear();
+        }
+        public void DisplayBadgeDetails(KeyValuePair<int, BadgesPOCOs> badge)
+        {
+            //KeyValuePair<int, BadgesPOCOs> badgeContent = new KeyValuePair<int, BadgesPOCOs>();
+            Console.WriteLine($"Key: {badge.Key}\n" +
+                $"BadgeId: {badge.Value.BadgeID}\n");
+            foreach (DoorAccess door in badge.Value.DoorAccess)
+            {
+                Console.WriteLine(door);
+            }
+            Console.WriteLine("------------------------");
+        }
+        public void AddABadge()
+        {
+            BadgesPOCOs newBadge = new BadgesPOCOs();
+
+            Console.WriteLine("What is the number on the badge?");
+            int userInputBadgeNumber = int.Parse(Console.ReadLine());
+            newBadge.BadgeID = userInputBadgeNumber;
+
+            //this is for adding doors to a badge
+            Setup(newBadge);
+
+
+
+
+            bool isSuccessful = _badgeRepo.AddNewBadge(newBadge);
+            if (isSuccessful)
+            {
+                Console.WriteLine("Successful");
+            }
+            else
+            {
+                Console.WriteLine("Failed");
+            }
+
+            Console.ReadKey();
+        }
+
+        private void Setup(BadgesPOCOs newBadge)
+        {
+
+
+            bool userInputDoorAccess = false;
+
+            while (!userInputDoorAccess)
+            {
+
+                Console.WriteLine("Do you want to add new doors to this badge? (y/n)");
+                string userInputAddDoors = Console.ReadLine().ToLower();
+                if (userInputAddDoors == "y")
+                {
+
+                    Console.WriteLine("Input the door you would like to add\n" +
+                        "1. A1\n" +
+                        "2. A2\n" +
+                        "3. A3\n" +
+                        "4. A4\n" +
+                        "5. A5\n" +
+                        "6. B1\n" +
+                        "7. B2\n" +
+                        "8. B3\n" +
+                        "9. B4\n" +
+                        "10. B5");
+                    string userInputNewDoors = Console.ReadLine();
+                    switch (userInputNewDoors)
+                    {
+                        case "1":
+                            newBadge.DoorAccess.Add((DoorAccess)int.Parse(userInputNewDoors));
+                            break;
+                        case "2":
+                            newBadge.DoorAccess.Add((DoorAccess)int.Parse(userInputNewDoors));
+                            break;
+                        case "3":
+                            newBadge.DoorAccess.Add((DoorAccess)int.Parse(userInputNewDoors));
+                            break;
+                        case "4":
+                            newBadge.DoorAccess.Add((DoorAccess)int.Parse(userInputNewDoors));
+                            break;
+                        case "5":
+                            newBadge.DoorAccess.Add((DoorAccess)int.Parse(userInputNewDoors));
+                            break;
+                        case "6":
+                            newBadge.DoorAccess.Add((DoorAccess)int.Parse(userInputNewDoors));
+                            break;
+                        case "7":
+                            newBadge.DoorAccess.Add((DoorAccess)int.Parse(userInputNewDoors));
+                            break;
+                        case "8":
+                            newBadge.DoorAccess.Add((DoorAccess)int.Parse(userInputNewDoors));
+                            break;
+                        case "9":
+                            newBadge.DoorAccess.Add((DoorAccess)int.Parse(userInputNewDoors));
+                            break;
+                        case "10":
+                            newBadge.DoorAccess.Add((DoorAccess)int.Parse(userInputNewDoors));
+                            break;
+
+                        default:
+                            break;
+
+                    }
+                }
+
+                else
+                {
+                    userInputDoorAccess = true;
+
+                }
+            }
         }
         private void Seed()
         {
 
-            BadgesPOCOs A = new BadgesPOCOs(12345, new List<DoorAccess> { DoorAccess.A3 , DoorAccess.A5}  );
-            BadgesPOCOs B = new BadgesPOCOs(22345, new List<DoorAccess> { DoorAccess.A1 , DoorAccess.A4, DoorAccess.B1, DoorAccess.B2}  );
-            BadgesPOCOs C = new BadgesPOCOs(32345, new List<DoorAccess> { DoorAccess.A4 , DoorAccess.A5}  );
+            BadgesPOCOs A = new BadgesPOCOs(12345, new List<DoorAccess> { DoorAccess.A3, DoorAccess.A5 });
+            BadgesPOCOs B = new BadgesPOCOs(22345, new List<DoorAccess> { DoorAccess.A1, DoorAccess.A4, DoorAccess.B1, DoorAccess.B2 });
+            BadgesPOCOs C = new BadgesPOCOs(32345, new List<DoorAccess> { DoorAccess.A4, DoorAccess.A5 });
 
             _badgeRepo.AddNewBadge(A);
             _badgeRepo.AddNewBadge(B);
             _badgeRepo.AddNewBadge(C);
-
-
-
-            //_badgeRepo.AddNewBadge(
-            //{
-            //    BadgeID = 12345,
-            //    = new DoorAccess();
-
-            //});
-
-            //_badgeRepo.AddNewBadge(new BadgesPOCOs
-            //{
-            //    BadgeID = 22345,
-            //    BadgeDoors = new List<string>()
-            //    {
-            //        "A1",
-            //        "A4",
-            //        "B1",
-            //        "B2"
-            //    }
-            //});
-
-            //_badgeRepo.AddNewBadge(new BadgesPOCOs
-            //{
-            //    BadgeID = 32345,
-            //    BadgeDoors = new List<string>()
-            //    {
-            //        "A4",
-            //        "A5"
-            //    }
-            //});
-
-
         }
-        
+
     }
 }

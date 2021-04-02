@@ -147,7 +147,7 @@ namespace Komodo_Claims
         {
             Console.Clear();
             Queue<ClaimsPOCOs> claims = _claimRepo.GetClaimsInQueue();
-            foreach (var claim in claims)
+            foreach (ClaimsPOCOs claim in claims)
             {
                 DisplayClaimDetails(claim);
             }
